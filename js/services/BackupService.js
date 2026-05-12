@@ -17,7 +17,7 @@ export class BackupService {
     'calendar_events',
     'lifeos_profile',
     'lifeos_debts',
-    'gemini_api_key'
+    'opencode_go_api_key'
   ];
 
   /**
@@ -32,7 +32,7 @@ export class BackupService {
         try {
           backup[key] = JSON.parse(raw);
         } catch (e) {
-          // gemini_api_key 같은 raw string은 parse 실패 → 원본 문자열 저장
+          // opencode_go_api_key 같은 raw string은 parse 실패 → 원본 문자열 저장
           backup[key] = raw;
         }
       }

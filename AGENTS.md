@@ -3,10 +3,10 @@
 ## Quickstart
 
 ```sh
-# Start the local dev server (port 5545, NOT default 8000)
-python -m http.server 5545
+# Start the local dev server (port 5500, NOT default 8000)
+python -m http.server 5500
 # Or double-click: LifeOS_서버실행.bat
-# Then open: http://localhost:5545
+# Then open: http://localhost:5500
 ```
 
 No npm, no build, no bundler. Pure Vanilla JS ES Modules served as static files.
@@ -47,8 +47,8 @@ These are plain JS arrays/objects. Extend configs without touching Service code 
 ## Verification
 
 No test suite, no linter, no CI. After changes:
-1. Start `python -m http.server 5545`
-2. Open `http://localhost:5545` in browser
+1. Start `python -m http.server 5500`
+2. Open `http://localhost:5500` in browser
 3. Check DevTools Console for errors
 4. Click through each nav link to verify rendering
 5. For data changes: add data → refresh page → confirm it persists in localStorage

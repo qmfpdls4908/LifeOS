@@ -23,10 +23,10 @@ export class AIAssistantView extends Component {
       <div class="glass-card" style="display: flex; flex-direction: column; align-items: center; gap: 1.5rem; text-align: center; padding: 3rem;">
         <div style="font-size: 3rem;">🤖</div>
         <h3 style="color: var(--accent-purple);">AI 어시스턴트 설정</h3>
-        <p style="color: var(--text-secondary);">Google Gemini API Key를 입력하시면 LifeOS에 기록된 데이터를 분석하여 맞춤형 조언을 드립니다.</p>
+        <p style="color: var(--text-secondary);">OpenCode Go API Key를 입력하시면 LifeOS에 기록된 데이터를 분석하여 맞춤형 조언을 드립니다.</p>
         <div class="input-group" style="width: 100%; max-width: 500px;">
-          <label>Gemini API Key</label>
-          <input type="password" id="api-key-input" class="glass-input" placeholder="AIza...">
+          <label>OpenCode Go API Key</label>
+          <input type="password" id="api-key-input" class="glass-input" placeholder="OpenCode Go API Key">
         </div>
         <button id="btn-save-key" class="btn-primary" style="padding: 0.75rem 2rem;">설정 완료</button>
         <p style="font-size: 0.8rem; color: var(--text-secondary);">⚠️ API Key는 이 브라우저의 localStorage에만 저장됩니다.</p>
@@ -89,7 +89,7 @@ export class AIAssistantView extends Component {
 
     if (resetBtn) {
       resetBtn.addEventListener('click', () => {
-        localStorage.removeItem('gemini_api_key');
+        localStorage.removeItem('opencode_go_api_key');
         this.element.innerHTML = this.#renderKeySetup();
         const saveBtn = this.element.querySelector('#btn-save-key');
         saveBtn.addEventListener('click', () => {
