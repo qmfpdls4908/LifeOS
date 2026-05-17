@@ -1,7 +1,6 @@
 export class AIService {
   #API_KEY_STORE = 'opencode_go_api_key';
-  #DIRECT_URL = 'https://opencode.ai/zen/go/v1/chat/completions';
-  #PROXY_URL = '/api/chat';
+  #BASE_URL = '/api/chat';
   #MODEL = 'deepseek-v4-pro';
   #financeService;
   #habitService;
@@ -19,22 +18,6 @@ export class AIService {
     this.#calendarService = calendarService;
     this.#routeService = routeService;
     this.#profileService = profileService;
-  }
-
-  #isLocal() {
-    const h = window.location.hostname;
-    return h === 'localhost' || h === '127.0.0.1';
-  }
-
-  #getUrl() {
-    return this.#isLocal() ? this.#PROXY_URL : this.#DIRECT_URL;
-  }
-
-  #getHeaders(apiKey) {
-    if (this.#isLocal()) {
-      return { 'Content-Type': 'application/json', 'X-API-Key': apiKey };
-    }
-    return { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + apiKey };
   }
 
   getApiKey() {
@@ -96,9 +79,9 @@ export class AIService {
       temperature: 0.7,
       max_tokens: 8192
     };
-    const response = await fetch(this.#getUrl(), {
+    const response = await fetch(this.#BASE_URL, {
       method: 'POST',
-      headers: this.#getHeaders(apiKey),
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': apiKey },
       body: JSON.stringify(body)
     });
     if (!response.ok) {
@@ -181,9 +164,9 @@ export class AIService {
       response_format: { type: 'json_object' }
     };
 
-    const response = await fetch(this.#getUrl(), {
+    const response = await fetch(this.#BASE_URL, {
       method: 'POST',
-      headers: this.#getHeaders(apiKey),
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': apiKey },
       body: JSON.stringify(body)
     });
     if (!response.ok) {
@@ -277,9 +260,9 @@ export class AIService {
       response_format: { type: 'json_object' }
     };
 
-    const response = await fetch(this.#getUrl(), {
+    const response = await fetch(this.#BASE_URL, {
       method: 'POST',
-      headers: this.#getHeaders(apiKey),
+      headers: { 'Content-Type': 'application/json', 'X-API-Key': apiKey },
       body: JSON.stringify(body)
     });
     if (!response.ok) {

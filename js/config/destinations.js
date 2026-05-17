@@ -21,6 +21,14 @@ export const DESTINATIONS = [
     ],
   },
   {
+    id: 'seoul', name: '서울',
+    routes: [
+      { method: 'KTX', from: '부산역', to: '서울역', duration: '약 2시간 40분', cost: '₩59,800' },
+      { method: '시외버스', from: '부산종합터미널', to: '서울(강남)', duration: '약 4시간 30분', cost: '₩30,000' },
+      { method: '승용차', from: '김해', to: '서울', duration: '약 4시간', cost: '₩50,000 (톨게이+유류)' },
+    ],
+  },
+  {
     id: 'kyungnam_univ', name: '경남대학교',
     routes: [
       { 

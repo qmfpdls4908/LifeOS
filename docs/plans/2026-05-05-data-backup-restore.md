@@ -44,7 +44,7 @@ http://192.168.0.5:5545    → localStorage B (텅 빔 🫗)
 | 5 | `reviews` | ReviewService | Repo 통해 저장 |
 | 6 | `calendar_events` | CalendarService | Repo 통해 저장 |
 | 7 | `lifeos_profile` | ProfileService | Repo 통해 저장 |
-| 8 | `opencode_go_api_key` | AIService | **raw localStorage** (예외!) |
+| 8 | `gemini_api_key` | AIService | **raw localStorage** (예외!) |
 | 9 | `routines_v3` | (legacy) | 읽기 전용, 백업에 포함 |
 | 10 | `habits` | (legacy) | 읽기 전용, 백업에 포함 |
 
@@ -77,7 +77,7 @@ export class BackupService {
     'reviews',
     'calendar_events',
     'lifeos_profile',
-    'opencode_go_api_key'
+    'gemini_api_key'
   ];
 
   /**
@@ -92,7 +92,7 @@ export class BackupService {
         try {
           backup[key] = JSON.parse(raw);
         } catch (e) {
-          // opencode_go_api_key 같은 raw string은 parse 실패 → 원본 저장
+          // gemini_api_key 같은 raw string은 parse 실패 → 원본 저장
           backup[key] = raw;
         }
       }
@@ -155,7 +155,7 @@ export class BackupService {
 
           for (const key of keys) {
             const value = data[key];
-            // opencode_go_api_key는 raw string, 나머지는 JSON stringify 필요
+            // gemini_api_key는 raw string, 나머지는 JSON stringify 필요
             if (typeof value === 'string') {
               localStorage.setItem(key, value);
             } else {
@@ -180,7 +180,7 @@ export class BackupService {
 ```
 
 **설계 결정:**
-- `#collectAllData()`: `JSON.parse` 실패 시 원본 문자열 저장 → `opencode_go_api_key` 대응
+- `#collectAllData()`: `JSON.parse` 실패 시 원본 문자열 저장 → `gemini_api_key` 대응
 - `exportData()`: Blob + 임시 `<a>` 태그로 다운로드 트리거 (서버 없이 가능)
 - `restoreData()`: `FileReader`로 비동기 처리, `Promise` 반환
 - 복원 후 자동 새로고침은 View에서 처리 (서비스는 순수 로직만)
